@@ -21,7 +21,7 @@ public class Base {
     public WebDriver InitializeDriver() throws IOException {
         //Setting up properties file
         Properties prop = new Properties();
-        FileInputStream fis = new FileInputStream("src/main/java/org/hquijano/data.properties");
+        FileInputStream fis = new FileInputStream("src/resources/data.properties");
         prop.load(fis);
 
         //Setting up browser
@@ -29,15 +29,15 @@ public class Base {
 
         switch (browserName) {
             case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                System.setProperty("webdriver.gecko.driver", "src/main/resources/geckodriver.exe");
+                System.setProperty("webdriver.gecko.driver", "src/resources/geckodriver.exe");
                 driver = new FirefoxDriver();
                 break;
             case "edge":
-                System.setProperty("webdriver.edge.driver", "src/main/resources/msedgedriver.exe");
+                System.setProperty("webdriver.edge.driver", "src/resources/msedgedriver.exe");
                 driver = new EdgeDriver();
                 break;
         }
