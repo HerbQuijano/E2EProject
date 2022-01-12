@@ -16,7 +16,7 @@ public class HomePageTest extends Base {
         //Initialize driver, driver comes from Base class
         driver = InitializeDriver();
         driver.get("http://www.qaclickacademy.com");
-
+        driver.quit();
 
     }
 
