@@ -8,10 +8,11 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ValidateTitleTextDisplayTest extends Base {
+public class ValidateNavigationBarTest extends Base {
 
     @Test
     public void testHomePageNavigation() throws IOException {
+
         //Setting up properties file
         Properties prop = new Properties();
         FileInputStream fis = new FileInputStream("src/resources/data.properties");
@@ -24,9 +25,11 @@ public class ValidateTitleTextDisplayTest extends Base {
         driver = InitializeDriver();
         driver.get(url);
 
+
         //creates an object of LandingPage class
         LandingPage landingPage = new LandingPage(driver);
-        Assert.assertTrue(landingPage.getCenterText().isDisplayed());
+        Assert.assertTrue(landingPage.getNavigationBar().isDisplayed());
+
 
         driver.quit();
     }

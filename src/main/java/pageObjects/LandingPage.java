@@ -4,13 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 public class LandingPage {
 
     public WebDriver driver;
 
     By loginLink = By.cssSelector("a[href='https://rahulshettyacademy.com/sign_in/']");
     By centerText = By.cssSelector("div[class='text-center'] h2");
-
+    By topCenterMenu = By.xpath("//ul[@class='nav navbar-nav navbar-right']/child::li"); //cssSelector = .nav.navbar-nav.navbar-right>li>a
+    By navigationBar = By.xpath("//ul[@class='nav navbar-nav navbar-right']");
 
     public LandingPage(WebDriver driver) {
         this.driver = driver;
@@ -22,6 +25,14 @@ public class LandingPage {
 
     public WebElement getCenterText() {
         return driver.findElement(centerText);
+    }
+
+    public List<WebElement> getTopCenterMenu() {
+        return driver.findElements(topCenterMenu);
+    }
+
+    public WebElement getNavigationBar() {
+        return driver.findElement(navigationBar);
     }
 
 
