@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="basePath">./logs</Property>
+<!--        <Property name="csvLog.fileName">csvLog</Property>-->
+<!--        <Property name="file-header">column1,column2,column3</Property>-->
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingFile name="File" fileName="${basePath}/print.log"
+                  filePattern="${basePath}/print-%d{yyyy-MM-dd}.log">>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <SizeBasedTriggeringPolicy size="100"/>
+        </RollingFile>
+
+    </Appenders>
+    <Loggers>
+<!--        <Logger name="org.hquijano" level="error" additivity="false">-->
+<!--            <AppenderRef ref="File"/>-->
+<!--        </Logger>-->
+        <Root level="trace">
+            <AppenderRef ref="Console" level="debug" additivity="false"/>
+            <AppenderRef ref="File" level="error" additivity="false"/>
+            <AppenderRef ref="File" level="info" additivity="false"/>
+        </Root>
+
+    </Loggers>
+</Configuration>
