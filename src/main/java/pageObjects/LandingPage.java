@@ -14,9 +14,16 @@ public class LandingPage {
     By centerText = By.cssSelector("div[class='text-center'] h2");
     By topCenterMenu = By.xpath("//ul[@class='nav navbar-nav navbar-right']/child::li"); //cssSelector = .nav.navbar-nav.navbar-right>li>a
     By navigationBar = By.xpath("//ul[@class='nav navbar-nav navbar-right']");
+    By annoyingPopup = By.xpath("//div[@class='listbuilder-popup-content']");
 
     public LandingPage(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public LoginPage getLoginPage()
+    {
+        driver.findElement(loginLink).click();
+        return new LoginPage(driver);
     }
 
     public WebElement GetLoginLink() {
@@ -35,5 +42,8 @@ public class LandingPage {
         return driver.findElement(navigationBar);
     }
 
+    public WebElement getAnnoyingPopup() {
+        return driver.findElement(annoyingPopup);
+    }
 
 }

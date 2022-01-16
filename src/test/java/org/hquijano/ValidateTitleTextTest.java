@@ -1,33 +1,45 @@
 package org.hquijano;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObjects.LandingPage;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Properties;
+
 
 public class ValidateTitleTextTest extends Base {
 
-    @Test
-    public void testHomePageNavigation() throws IOException {
-        //Setting up properties file
-        Properties prop = new Properties();
-        FileInputStream fis = new FileInputStream("src/resources/data.properties");
-        prop.load(fis);
-
-        //Setting up url from data.properties file
-        String url = prop.getProperty("url");
+    @BeforeMethod(alwaysRun = true)
+    public void setUp() throws IOException {
 
         //Initialize driver, driver comes from Base class
         driver = InitializeDriver();
-        driver.get(url);
+        driver.get(prop.getProperty("url"));
+    }
+
+    @Test
+    public void homePageCenterTextValidation() throws IOException {
+
 
         //creates an object of LandingPage class
         LandingPage landingPage = new LandingPage(driver);
         Assert.assertEquals(landingPage.getCenterText().getText(), "FEATURED COURSES");
 
+
+    }
+
+    @Test(groups = {"Smoke"})
+    public void homePageCenterTextDisplay() throws IOException {
+        //creates an object of LandingPage class
+        LandingPage landingPage = new LandingPage(driver);
+        Assert.assertTrue(landingPage.getCenterText().isDisplayed());
+
+
+    }
+
+    @AfterMethod
+    public void tearDown() {
         driver.quit();
     }
 

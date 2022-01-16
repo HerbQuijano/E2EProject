@@ -1,44 +1,44 @@
 package org.hquijano;
 
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pageObjects.LandingPage;
 import pageObjects.LoginPage;
 
-import java.io.FileInputStream;
+
 import java.io.IOException;
-import java.util.Properties;
+
 
 //extends Base to access InitializeDriver Method
 public class LandingPageTest extends Base {
 
-    //Example TestNG Test
-    @Test(dataProvider = "getData")
-    public void testHomePageNavigation(String username, String password) throws IOException {
-        System.out.println("Home page test");
-
-        //Setting up properties file
-        Properties prop = new Properties();
-        FileInputStream fis = new FileInputStream("src/resources/data.properties");
-        prop.load(fis);
-
-        //Setting up url from data.properties file
-        String url = prop.getProperty("url");
-
-        //Initialize driver, driver comes from Base class
+    @BeforeMethod(alwaysRun = true)
+    public void setUp() throws IOException {
         driver = InitializeDriver();
-        driver.get(url);
+    }
 
-        //creates an object of LandingPage class
+    @Test(dataProvider = "getData")
+    public void testHomePageNavigationLogin(String username, String password) throws IOException {
+
+        driver.get(prop.getProperty("url"));
+       // Actions builder = new Actions(driver);
         LandingPage landingPage = new LandingPage(driver);
+       // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+       // wait.until(ExpectedConditions.visibilityOf(landingPage.getAnnoyingPopup()));
+       // Action pressEsc = builder.sendKeys(landingPage.getAnnoyingPopup(), Keys.ESCAPE).build();
+       // pressEsc.perform();
         LoginPage loginPage = new LoginPage(driver);
         landingPage.GetLoginLink().click();
         loginPage.GetEmailField().sendKeys(username);
         loginPage.GetPasswordField().sendKeys(password);
         loginPage.GetLoginButton().click();
 
+    }
+
+    @AfterMethod
+    public void tearDown() {
         driver.quit();
     }
+
 
     @DataProvider
     public Object[][] getData() {

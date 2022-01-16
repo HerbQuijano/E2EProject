@@ -16,11 +16,12 @@ import java.util.concurrent.TimeUnit;
 public class Base {
 
     //Setting up WebDrier
-    WebDriver driver;
+    public WebDriver driver;
+    public Properties prop;
 
     public WebDriver InitializeDriver() throws IOException {
         //Setting up properties file
-        Properties prop = new Properties();
+        prop = new Properties();
         FileInputStream fis = new FileInputStream("src/resources/data.properties");
         prop.load(fis);
 
