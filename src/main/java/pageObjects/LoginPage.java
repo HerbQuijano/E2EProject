@@ -17,17 +17,17 @@ public class LoginPage {
         this.driver = driver;
     }
 
-    public WebElement GetEmailField()
+    public WebElement getEmailField()
     {
         return driver.findElement(emailField);
     }
 
-    public WebElement GetPasswordField()
+    public WebElement getPasswordField()
     {
         return driver.findElement(passwordField);
     }
 
-    public WebElement GetLoginButton()
+    public WebElement getLoginButton()
     {
         return driver.findElement(loginButton);
     }

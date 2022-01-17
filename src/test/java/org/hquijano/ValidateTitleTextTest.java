@@ -2,7 +2,6 @@ package org.hquijano;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pageObjects.LandingPage;
@@ -18,12 +17,12 @@ public class ValidateTitleTextTest extends Base {
     public void setUp() throws IOException {
 
         //Initialize driver, driver comes from Base class
-        driver = InitializeDriver();
+        driver = initializeDriver();
         driver.get(prop.getProperty("url"));
     }
 
     @Test
-    public void homePageCenterTextValidation() throws IOException {
+    public void homePageCenterTextValidation() {
 
 
         //creates an object of LandingPage class
@@ -35,7 +34,7 @@ public class ValidateTitleTextTest extends Base {
     }
 
     @Test(groups = {"Smoke"})
-    public void homePageCenterTextDisplay() throws IOException {
+    public void homePageCenterTextDisplay() {
         //creates an object of LandingPage class
         LandingPage landingPage = new LandingPage(driver);
         Assert.assertTrue(landingPage.getCenterText().isDisplayed());

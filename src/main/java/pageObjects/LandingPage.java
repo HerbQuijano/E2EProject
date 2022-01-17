@@ -26,7 +26,7 @@ public class LandingPage {
         return new LoginPage(driver);
     }
 
-    public WebElement GetLoginLink() {
+    public WebElement getLoginLink() {
         return driver.findElement(loginLink);
     }
 

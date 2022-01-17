@@ -2,7 +2,6 @@ package org.hquijano;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -25,7 +24,7 @@ public class LandingPageTest extends Base {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws IOException {
-        driver = InitializeDriver();
+        driver = initializeDriver();
         log.info("Driver is initialized");
     }
 
@@ -40,24 +39,24 @@ public class LandingPageTest extends Base {
         wait.until(ExpectedConditions.visibilityOf(landingPage.getAnnoyingPopup()));
         Action pressEsc = builder.sendKeys(landingPage.getAnnoyingPopup(), Keys.ESCAPE).build();
         pressEsc.perform();
-        landingPage.GetLoginLink().click();
+        landingPage.getLoginLink().click();
         log.info("Clicked on Login Link");
-        System.out.println(driver.getCurrentUrl());
-        System.out.println(prop.getProperty("loginPageURL"));
+//        System.out.println(driver.getCurrentUrl());
+//        System.out.println(prop.getProperty("loginPageUrl"));
 
 
-        if (driver.getCurrentUrl().equals(prop.getProperty("loginPageURL"))) {
+        if (driver.getCurrentUrl().equals(prop.getProperty("loginPageUrl"))) {
             log.info("Navigated to Login Page");
             LoginPage loginPage = new LoginPage(driver);
             log.info("Entering username");
-            loginPage.GetEmailField().sendKeys(username);
+            loginPage.getEmailField().sendKeys(username);
             log.info("Entering password");
-            loginPage.GetPasswordField().sendKeys(password);
-            loginPage.GetLoginButton().click();
+            loginPage.getPasswordField().sendKeys(password);
+            loginPage.getLoginButton().click();
             log.info("Clicked on Login Button");
         } else {
             log.error("Login page is not displayed");
-            Assert.assertEquals(driver.getCurrentUrl(), prop.getProperty("loginPageURL"));
+            Assert.assertEquals(driver.getCurrentUrl(), prop.getProperty("loginPageUrl"));
 
         }
     }
