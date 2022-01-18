@@ -1,13 +1,22 @@
 package org.hquijano;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.Properties;
 
 public class Base {
@@ -50,7 +59,22 @@ public class Base {
 
     }
 
+    public void closeDriver() {
+        driver.quit();
+    }
 
+    public void closeBrowser() {
+        driver.close();
+    }
+
+    public void getScreenShotPath(String testMethodName, WebDriver driver) throws IOException {
+        TakesScreenshot takeShot = (TakesScreenshot) driver;
+        File source = takeShot.getScreenshotAs(org.openqa.selenium.OutputType.FILE);
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss");
+        LocalDate localDate = LocalDate.now();
+        String destinationFile = System.getProperty("user.dir") + "/reports/screenshots/" + testMethodName + localDate + ".png";
+        FileUtils.copyFile(source, new File(destinationFile));
+    }
 
 
 }

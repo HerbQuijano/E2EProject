@@ -23,19 +23,18 @@ public class ValidateTitleTextTest extends Base {
     }
 
     @Test
-    public void homePageCenterTextValidation() {
-
+    public void validateHomePageCenterText() {
 
         //creates an object of LandingPage class
         LandingPage landingPage = new LandingPage(driver);
-        Assert.assertEquals(landingPage.getCenterText().getText(), "FEATURED COURSES");
+        Assert.assertEquals(landingPage.getCenterText().getText(), "FEATUREDd COURSES");
         log.info("successfully validated the text" + landingPage.getCenterText().getText());
 
 
     }
 
     @Test(groups = {"Smoke"})
-    public void homePageCenterTextDisplay() {
+    public void validateHomePageCenterTextDisplay() {
         //creates an object of LandingPage class
         LandingPage landingPage = new LandingPage(driver);
         Assert.assertTrue(landingPage.getCenterText().isDisplayed());
