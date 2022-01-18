@@ -3,6 +3,7 @@ package org.hquijano;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -12,15 +13,14 @@ import org.testng.annotations.*;
 import pageObjects.LandingPage;
 import pageObjects.LoginPage;
 
-
 import java.io.IOException;
 import java.time.Duration;
 
 
 //extends Base to access InitializeDriver Method
 public class LandingPageTest extends Base {
-
     private static final Logger log = LogManager.getLogger(LandingPageTest.class.getName());
+    public WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws IOException {
@@ -35,7 +35,7 @@ public class LandingPageTest extends Base {
         Actions builder = new Actions(driver);
         LandingPage landingPage = new LandingPage(driver);
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(12));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
         wait.until(ExpectedConditions.visibilityOf(landingPage.getAnnoyingPopup()));
         Action pressEsc = builder.sendKeys(landingPage.getAnnoyingPopup(), Keys.ESCAPE).build();
         pressEsc.perform();
@@ -63,14 +63,9 @@ public class LandingPageTest extends Base {
 
     @AfterMethod
     public void tearDown() {
-        driver.close();
-    }
-
-    @AfterTest
-    public void afterTest() {
+        log.info("Test completed");
         driver.quit();
     }
-
 
     @DataProvider
     public Object[][] getData() {

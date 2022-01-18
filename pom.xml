@@ -78,8 +78,8 @@
     <build>
         <resources>
         <resource>
-            <directory>src/resources</directory>
-            <filtering>true</filtering>
+            <directory>src/resources</directory> <!-- FIXME change it to the project's resources folder -->
+            <filtering>true</filtering> <!-- FIXME change it to the project's resources folder -->
         </resource>
         </resources>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

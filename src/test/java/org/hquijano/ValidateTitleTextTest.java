@@ -2,6 +2,7 @@ package org.hquijano;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pageObjects.LandingPage;
@@ -10,10 +11,10 @@ import java.io.IOException;
 
 
 public class ValidateTitleTextTest extends Base {
-
     private static final Logger log = LogManager.getLogger(ValidateTitleTextTest.class.getName());
+    public WebDriver driver;
 
-    @BeforeMethod(alwaysRun = true)
+    @BeforeTest(alwaysRun = true)
     public void setUp() throws IOException {
 
         //Initialize driver, driver comes from Base class
@@ -43,14 +44,9 @@ public class ValidateTitleTextTest extends Base {
 
     }
 
-    @AfterMethod
+    @AfterTest
     public void tearDown() {
         log.info("Test completed");
-        driver.close();
-    }
-
-    @AfterTest
-    public void afterTest() {
         driver.quit();
     }
 

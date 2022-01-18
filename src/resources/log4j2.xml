@@ -21,10 +21,10 @@
 <!--        <Logger name="org.hquijano" level="error" additivity="false">-->
 <!--            <AppenderRef ref="File"/>-->
 <!--        </Logger>-->
-        <Root level="trace">
-            <AppenderRef ref="Console" level="debug" additivity="false"/>
-            <AppenderRef ref="File" level="error" additivity="false"/>
-            <AppenderRef ref="File" level="info" additivity="false"/>
+        <Root level="trace" additivity="false">
+            <AppenderRef ref="Console" level="debug"/>
+            <AppenderRef ref="File" level="error"/>
+            <AppenderRef ref="File" level="info"/>
         </Root>
 
     </Loggers>

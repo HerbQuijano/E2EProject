@@ -2,6 +2,7 @@ package org.hquijano;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pageObjects.LandingPage;
@@ -14,8 +15,8 @@ import java.io.IOException;
 //Jenkins
 
 public class ValidateNavigationBarTest extends Base {
-
     private static final Logger log = LogManager.getLogger(ValidateNavigationBarTest.class.getName());
+    public WebDriver driver;
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws IOException {
@@ -36,14 +37,11 @@ public class ValidateNavigationBarTest extends Base {
 
     }
 
-    @AfterMethod
-    public void tearDown() {
-        driver.close();
-    }
-
     @AfterTest
-    public void afterTest() {
+    public void tearDown() {
+        log.info("Test completed");
         driver.quit();
     }
+
 
 }
