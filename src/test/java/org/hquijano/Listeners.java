@@ -12,59 +12,62 @@ import java.io.IOException;
 
 public class Listeners extends Base implements ITestListener {
 
-    ExtentReports extent = ExtentReporterNG.getReporter();
     ExtentTest test;
+    ExtentReports extent = ExtentReporterNG.getReporter();
+    ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>(); //changed new ThreadLocal<ExtentTest> to only ThreadLocal<>
 
     @Override
     public void onTestStart(ITestResult result) {
         test = extent.createTest(result.getMethod().getMethodName());
+        extentTest.set(test);
+
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         ITestListener.super.onTestSuccess(result);
-        test.pass("Test passed");
-        test.log(Status.PASS, "Test passed");
+        extentTest.get().pass("Test passed");
+
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
-        WebDriver driver = null; //Dummy WebDriver to use in the try block
+
+        extentTest.get().fail(result.getThrowable());
         ITestListener.super.onTestFailure(result);
+        WebDriver driver = null; //Dummy WebDriver to use in the try block
         String testMethodName = result.getMethod().getMethodName();
         try {
-            driver = (WebDriver)result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
+            driver = (WebDriver) result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
         } catch (IllegalAccessException | NoSuchFieldException e) {
             e.printStackTrace();
         }
         try {
-            getScreenShotPath(testMethodName, driver);
+            extentTest.get().addScreenCaptureFromPath("." + getScreenShotPath(testMethodName, driver), result.getMethod().getMethodName());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        test.fail(result.getThrowable());
-        test.log(Status.FAIL, "Test failed");
 
     }
 
     @Override
     public void onTestSkipped(ITestResult result) {
         ITestListener.super.onTestSkipped(result);
-        test.skip(result.getThrowable());
-        test.log(Status.SKIP, "Test skipped");
+        extentTest.get().skip(result.getThrowable());
+
     }
 
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
         ITestListener.super.onTestFailedButWithinSuccessPercentage(result);
-        test.warning(result.getThrowable());
+        extentTest.get().warning(result.getThrowable());
     }
 
     @Override
     public void onTestFailedWithTimeout(ITestResult result) {
         ITestListener.super.onTestFailedWithTimeout(result);
-        test.info("Test failed with timeout");
+        extentTest.get().info("Test failed with timeout");
     }
 
     @Override
