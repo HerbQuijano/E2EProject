@@ -29,8 +29,12 @@ public class ValidateTitleTextTest extends Base {
 
         //creates an object of LandingPage class
         LandingPage landingPage = new LandingPage(driver);
-        Assert.assertEquals(landingPage.getCenterText().getText(), "FEATUREDd COURSES");
-        log.info("successfully validated the text" + landingPage.getCenterText().getText());
+        //Assert.assertEquals(landingPage.getCenterText().getText(), "FEATUREDd COURSES");
+        if (!landingPage.getCenterText().getText().equals("FEATUREDd COURSES")) {
+            log.error("successfully validated the text" + landingPage.getCenterText().getText());
+            Assert.fail("successfully validated the text" + landingPage.getCenterText().getText());
+        }
+
 
 
     }
