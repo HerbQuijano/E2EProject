@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import pageObjects.ForgotPassPage;
 import pageObjects.LandingPage;
 import pageObjects.LoginPage;
 
@@ -39,25 +40,19 @@ public class LandingPageTest extends Base {
         wait.until(ExpectedConditions.visibilityOf(landingPage.getAnnoyingPopup()));
         Action pressEsc = builder.sendKeys(landingPage.getAnnoyingPopup(), Keys.ESCAPE).build();
         pressEsc.perform();
-        landingPage.getLoginLink().click();
-        log.info("Clicked on Login Link");
-//        System.out.println(driver.getCurrentUrl());
-//        System.out.println(prop.getProperty("loginPageUrl"));
-
-
-        if (driver.getCurrentUrl().equals(prop.getProperty("loginPageUrl"))) {
-            log.info("Navigated to Login Page");
-            LoginPage loginPage = new LoginPage(driver);
-            log.info("Entering username");
-            loginPage.getEmailField().sendKeys(username);
-            log.info("Entering password");
-            loginPage.getPasswordField().sendKeys(password);
-            loginPage.getLoginButton().click();
-            log.info("Clicked on Login Button");
+        LoginPage lp = landingPage.getLoginPage();
+        lp.getLoginButton().click();
+        lp.getEmailField().sendKeys(username);
+        lp.getPasswordField().sendKeys(password);
+        lp.getLoginButton().click();
+        ForgotPassPage fp = lp.ForgotPassPage();
+        fp.getForgotEmailField().sendKeys(username);
+        fp.sendInstructionForgot().click();
+        if (driver.getCurrentUrl().contains("Send+Me+Instructions")) {
+            Assert.assertTrue(true);
         } else {
-            log.error("Login page is not displayed");
-            Assert.assertEquals(driver.getCurrentUrl(), prop.getProperty("loginPageUrl"));
-
+            log.error("Error: " + driver.getCurrentUrl());
+            Assert.fail("Page displayed is not the expected one");
         }
     }
 

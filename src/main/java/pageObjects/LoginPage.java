@@ -11,13 +11,20 @@ public class LoginPage {
     By emailField = By.xpath("//input[@type='email']");
     By passwordField = By.xpath("//input[@type='password']");
     By loginButton = By.xpath("//input[@type='submit']");
+    By forgotPassButton = By.cssSelector(".link-below-button");
     //By loginButton = By.xpath("//input[@name='commit']");
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
 
-    public WebElement getEmailField()
+    public ForgotPassPage ForgotPassPage()
+    {
+        driver.findElement(forgotPassButton).click();
+        return new ForgotPassPage(driver);
+    }
+
+       public WebElement getEmailField()
     {
         return driver.findElement(emailField);
     }
@@ -30,5 +37,10 @@ public class LoginPage {
     public WebElement getLoginButton()
     {
         return driver.findElement(loginButton);
+    }
+
+    public WebElement getForgotPassButton()
+    {
+        return driver.findElement(forgotPassButton);
     }
 }
