@@ -1,1 +1,1 @@
-22:36:50.151 [TestNG-tests-1] ERROR org.hquijano.LandingPageTest - Error: https://rahulshettyacademy.com/sign_in/password/new/index.php?email=nonrestricted%40qw.com&commit=Send+Me+Instruction
+22:46:35.927 [TestNG-tests-1] ERROR org.hquijano.LandingPageTest - Error: https://rahulshettyacademy.com/sign_in/password/new/index.php?email=nonrestricted%40qw.com&commit=Send+Me+Instruction

@@ -26,9 +26,10 @@ public class Base {
         prop = new Properties();
         FileInputStream fis = new FileInputStream("src/resources/data.properties");
         prop.load(fis);
-
+        //mvn -Dbrowser=chrome -Dos=windows -Dtest=BaseTest#test01
+        String browserName = System.getProperty("browser");
         //Setting up browser
-        String browserName = prop.getProperty("browser");
+        //String browserName = prop.getProperty("browser");
 
         switch (browserName) {
             case "chrome":
