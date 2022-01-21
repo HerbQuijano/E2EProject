@@ -8,10 +8,10 @@ public class LoginPage {
 
     WebDriver driver;
 
-    By emailField = By.xpath("//input[@type='email']");
-    By passwordField = By.xpath("//input[@type='password']");
-    By loginButton = By.xpath("//input[@type='submit']");
-    By forgotPassButton = By.cssSelector(".link-below-button");
+    private By emailField = By.xpath("//input[@type='email']");
+    private By passwordField = By.xpath("//input[@type='password']");
+    private By loginButton = By.xpath("//input[@type='submit']");
+    private By forgotPassButton = By.cssSelector(".link-below-button");
     //By loginButton = By.xpath("//input[@name='commit']");
 
     public LoginPage(WebDriver driver) {

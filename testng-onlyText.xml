@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--<suite name="HomePage test" parallel="tests">-->
+<suite name="HomePage test" parallel="tests">
+    <listeners>
+        <listener class-name="org.hquijano.Listeners"/>
+    </listeners>
+    <test name="Title Test">
+        <classes>
+            <class name="org.hquijano.ValidateTitleTextTest">
+                <methods>
+                    <include name="validateHomePageCenterText"/>
+                    <include name="validateHomePageCenterTextDisplay"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

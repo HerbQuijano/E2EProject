@@ -9,11 +9,11 @@ import java.util.List;
 public class LandingPage {
 
     public WebDriver driver;
-    By loginLink = By.cssSelector("a[href='https://rahulshettyacademy.com/sign_in/']");
-    By centerText = By.cssSelector("div[class='text-center'] h2");
-    By topCenterMenu = By.xpath("//ul[@class='nav navbar-nav navbar-right']/child::li"); //cssSelector = .nav.navbar-nav.navbar-right>li>a
-    By navigationBar = By.xpath("//ul[@class='nav navbar-nav navbar-right']");
-    By annoyingPopup = By.xpath("//div[@class='listbuilder-popup-content']");
+    private By loginLink = By.cssSelector("a[href='https://rahulshettyacademy.com/sign_in/']");
+    private By centerText = By.cssSelector("div[class='text-center'] h2");
+    private By topCenterMenu = By.xpath("//ul[@class='nav navbar-nav navbar-right']/child::li"); //cssSelector = .nav.navbar-nav.navbar-right>li>a
+    private By navigationBar = By.xpath("//ul[@class='nav navbar-nav navbar-right']");
+    private By annoyingPopup = By.xpath("//div[@class='listbuilder-popup-content']");
 
     public LandingPage(WebDriver driver) {
        this.driver = driver;

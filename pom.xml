@@ -155,7 +155,7 @@
                 <version>2.20</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testng-Full.xml</suiteXmlFile>
+                        <suiteXmlFile>testng-onlyText.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>

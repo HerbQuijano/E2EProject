@@ -4,6 +4,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -31,19 +32,21 @@ public class Base {
         //Setting up browser
         //String browserName = prop.getProperty("browser");
 
-        switch (browserName) {
-            case "chrome":
-                System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
-                driver = new ChromeDriver();
-                break;
-            case "firefox":
-                System.setProperty("webdriver.gecko.driver", "src/resources/geckodriver.exe");
-                driver = new FirefoxDriver();
-                break;
-            case "edge":
-                System.setProperty("webdriver.edge.driver", "src/resources/msedgedriver.exe");
-                driver = new EdgeDriver();
-                break;
+        if (browserName.contains("chrome")) {
+            System.setProperty("webdriver.chrome.driver", "src/resources/chromedriver.exe");
+            ChromeOptions options = new ChromeOptions();
+            if (browserName.contains("headless")) {
+                options.addArguments("headless");
+            }
+            driver = new ChromeDriver(options);
+        }
+        if (browserName.contains("firefox")) {
+            System.setProperty("webdriver.gecko.driver", "src/resources/geckodriver.exe");
+            driver = new FirefoxDriver();
+        }
+        if (browserName.contains("edge")) {
+            System.setProperty("webdriver.edge.driver", "src/resources/MicrosoftWebDriver.exe");
+            driver = new EdgeDriver();
         }
 
         //Setting up browser preferences

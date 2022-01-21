@@ -30,7 +30,7 @@ public class ValidateTitleTextTest extends Base {
         //creates an object of LandingPage class
         LandingPage landingPage = new LandingPage(driver);
         //Assert.assertEquals(landingPage.getCenterText().getText(), "FEATUREDd COURSES");
-        if (!landingPage.getCenterText().getText().equals("FEATUREDD COURSES")) {
+        if (!landingPage.getCenterText().getText().equals("FEATURED COURSES")) {
             log.error("Text is not the expected one");
             Assert.fail("Text is not the expected one");
         }

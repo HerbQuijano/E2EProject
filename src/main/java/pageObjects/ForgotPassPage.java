@@ -8,8 +8,8 @@ public class ForgotPassPage {
 
     WebDriver driver;
 
-    By emailField = By.xpath("//input[@type='email']");
-    By sendInstruction = By.xpath("//input[@type='submit']");
+    private By emailField = By.xpath("//input[@type='email']");
+    private By sendInstruction = By.xpath("//input[@type='submit']");
 
    public ForgotPassPage(WebDriver driver) {
        this.driver = driver;
